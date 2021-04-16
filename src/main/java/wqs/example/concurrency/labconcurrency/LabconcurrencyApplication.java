@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,17 +20,18 @@ import wqs.example.concurrency.labconcurrency.service.PaymentService;
 public class LabconcurrencyApplication {
 	
 	// https://dzone.com/articles/synchronized-by-the-value-of-the-object-in-java
+	
+	@Autowired
+	PaymentService service;
 
 	public static void main(String[] args) {
 		SpringApplication.run(LabconcurrencyApplication.class, args);
 	}
 	
-	@Bean
-	public CommandLineRunner run(PaymentService service) {
+	@PostConstruct
+	public void run() {
 		
-		return args -> {
-			service.withDrawMoney(UUID.fromString("CODTESTE"), 10);
-		};
+		service.withDrawMoney(UUID.randomUUID(), 10);
 		
 	}
 	

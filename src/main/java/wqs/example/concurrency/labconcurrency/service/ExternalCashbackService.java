@@ -21,11 +21,11 @@ public class ExternalCashbackService {
 
 	private final RestTemplate resttemplate;
 
-	public Result evaluatecashback(UUID userid, int amountofmoney) {
+	public Result evaluateCashBack(UUID userid, int amountofmoney) {
 		return sendRestRequest("evaluate", userid, amountofmoney);
 	}
 
-	public Result cashbackcomplete(UUID userid, int cashbackamount) {
+	public Result cashBackComplete(UUID userid, int cashbackamount) {
 		return sendRestRequest("complete", userid, cashbackamount);
 	}
 

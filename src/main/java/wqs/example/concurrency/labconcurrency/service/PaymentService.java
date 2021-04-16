@@ -19,9 +19,9 @@ public class PaymentService {
 
 	public void withDrawMoney(UUID userid, int amountofmoney) {
 		xsync.execute(userid, () -> {
-			Result result = externalcashbackservice.evaluatecashback(userid, amountofmoney);
+			Result result = externalcashbackservice.evaluateCashBack(userid, amountofmoney);
 			accountservice.transfer(userid, amountofmoney + result.getCashBackAmount());
-			externalcashbackservice.cashbackcomplete(userid, result.getCashBackAmount());
+			externalcashbackservice.cashBackComplete(userid, result.getCashBackAmount());
 		});
 	}
 
