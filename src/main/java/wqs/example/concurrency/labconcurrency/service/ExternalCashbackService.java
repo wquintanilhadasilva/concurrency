@@ -22,14 +22,14 @@ public class ExternalCashbackService {
 	private final RestTemplate resttemplate;
 
 	public Result evaluatecashback(UUID userid, int amountofmoney) {
-		return sendrestrequest("evaluate", userid, amountofmoney);
+		return sendRestRequest("evaluate", userid, amountofmoney);
 	}
 
 	public Result cashbackcomplete(UUID userid, int cashbackamount) {
-		return sendrestrequest("complete", userid, cashbackamount);
+		return sendRestRequest("complete", userid, cashbackamount);
 	}
 
-	private Result sendrestrequest(String action, UUID userid, int value) {
+	private Result sendRestRequest(String action, UUID userid, int value) {
 
 		URI externalcashbacksystemurl = URI.create("http://cash-back-system.org/api/" + action);
 		HttpHeaders headers = new HttpHeaders();
